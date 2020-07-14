@@ -3,16 +3,19 @@ import ColumnsContainer from "./components/ColumnsContainer";
 import { v4 as uuid } from "uuid";
 import { IColumnModel } from "./models/Column";
 import GetNextDisplayName from "./utils/GetNextDisplayName";
+import colors from "./theme/colors";
 
 const App = () => {
   const [columns, setColumns] = useState<IColumnModel[]>([]);
 
   const addColumn = () => {
     const newColumns = [...columns];
+    const colorIndex = newColumns.length % colors.length;
+
     newColumns.push({
       id: uuid(),
       displayName: GetNextDisplayName(newColumns),
-      color: "red",
+      color: `#${colors[colorIndex]}`,
     });
     setColumns(newColumns);
   };
