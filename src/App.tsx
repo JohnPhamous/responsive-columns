@@ -7,10 +7,10 @@ import colors from "./theme/colors";
 
 const App = () => {
   const [columns, setColumns] = useState<IColumnModel[]>([]);
+  const [colorIndex, setColorIndex] = useState<number>(0);
 
   const addColumn = () => {
     const newColumns = [...columns];
-    const colorIndex = newColumns.length % colors.length;
 
     newColumns.push({
       id: uuid(),
@@ -18,6 +18,7 @@ const App = () => {
       color: `#${colors[colorIndex]}`,
     });
     setColumns(newColumns);
+    setColorIndex(colorIndex + 1);
   };
 
   const removeColumn = (id: string) => {
