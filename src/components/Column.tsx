@@ -1,5 +1,6 @@
 import React from "react";
 import { IColumnModel } from "../models/Column";
+import styled from "styled-components";
 
 interface IColumnProps {
   column: IColumnModel;
@@ -11,11 +12,19 @@ const Column = (props: IColumnProps) => {
   const { displayName } = column;
 
   return (
-    <div>
+    <ColumnContainer backgroundColor={column.color}>
       <p>{displayName}</p>
       <button onClick={removeColumns}>Remove</button>
-    </div>
+    </ColumnContainer>
   );
 };
 
 export default Column;
+
+interface ColumnContainerProps {
+  readonly backgroundColor: string;
+}
+
+const ColumnContainer = styled.div<ColumnContainerProps>`
+  background-color: ${(props) => props.backgroundColor};
+`;
