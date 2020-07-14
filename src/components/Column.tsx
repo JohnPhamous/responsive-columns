@@ -26,6 +26,7 @@ interface ColumnContainerProps {
 
 const ColumnWrapper = styled.div<ColumnContainerProps>`
   background-color: ${(props) => props.backgroundColor};
+  height: 100%;
   flex-grow: 1;
   display: flex;
   justify-content: center;

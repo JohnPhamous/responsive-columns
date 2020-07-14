@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import { IColumnModel } from "./models/Column";
 import GetNextDisplayName from "./utils/GetNextDisplayName";
 import colors from "./theme/colors";
+import styled from "styled-components";
 
 const App = () => {
   const [columns, setColumns] = useState<IColumnModel[]>([]);
@@ -31,11 +32,15 @@ const App = () => {
   };
 
   return (
-    <main>
+    <AppWrapper>
       <button onClick={addColumn}>Add Column</button>
       <ColumnsContainer columns={columns} removeColumns={removeColumn} />
-    </main>
+    </AppWrapper>
   );
 };
 
 export default App;
+
+const AppWrapper = styled.main`
+  height: 100px;
+`;

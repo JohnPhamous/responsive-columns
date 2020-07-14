@@ -1,7 +1,9 @@
 import React from "react";
 import Column from "./Column";
 import { IColumnModel } from "../models/Column";
-import styled from "styled-components";
+import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
+
+import "react-reflex/styles.css";
 
 interface IColumnsContainerProps {
   columns: IColumnModel[];
@@ -11,21 +13,31 @@ interface IColumnsContainerProps {
 const ColumnsContainer = (props: IColumnsContainerProps) => {
   const { columns, removeColumns } = props;
 
+  const renderColumns = () => {
+    const renderedColumns: React.ReactNode[] = [];
+
+    columns.forEach((column, index) => {
+      renderedColumns.push(
+        <ReflexElement key={`${column.id}-element`}>
+          <Column
+            key={column.id}
+            column={column}
+            removeColumns={() => removeColumns(column.id)}
+          />
+        </ReflexElement>
+      );
+
+      if (index < columns.length - 1) {
+        renderedColumns.push(
+          <ReflexSplitter key={`${column.id}-splitter`} propagate />
+        );
+      }
+    });
+    return renderedColumns;
+  };
   return (
-    <ColumnsWrapper>
-      {columns.map((column: IColumnModel) => (
-        <Column
-          key={column.id}
-          column={column}
-          removeColumns={() => removeColumns(column.id)}
-        />
-      ))}
-    </ColumnsWrapper>
+    <ReflexContainer orientation="vertical">{renderColumns()}</ReflexContainer>
   );
 };
 
 export default ColumnsContainer;
-
-const ColumnsWrapper = styled.div`
-  display: flex;
-`;
