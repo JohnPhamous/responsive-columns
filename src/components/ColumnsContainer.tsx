@@ -1,8 +1,9 @@
 import React from "react";
 import Column from "./Column";
+import { IColumnModel } from "../models/Column";
 
 interface IColumnsContainerProps {
-  columns: string[];
+  columns: IColumnModel[];
   removeColumns: (id: string) => void;
 }
 
@@ -11,8 +12,12 @@ const ColumnsContainer = (props: IColumnsContainerProps) => {
 
   return (
     <>
-      {columns.map((id: string) => (
-        <Column key={id} id={id} removeColumns={() => removeColumns(id)} />
+      {columns.map((column: IColumnModel) => (
+        <Column
+          key={column.id}
+          column={column}
+          removeColumns={() => removeColumns(column.id)}
+        />
       ))}
     </>
   );

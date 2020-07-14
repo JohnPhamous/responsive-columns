@@ -1,16 +1,18 @@
 import React from "react";
+import { IColumnModel } from "../models/Column";
 
 interface IColumnProps {
-  id: string;
+  column: IColumnModel;
   removeColumns: () => void;
 }
 
 const Column = (props: IColumnProps) => {
-  const { id, removeColumns } = props;
+  const { column, removeColumns } = props;
+  const { displayName } = column;
 
   return (
     <div>
-      <p>{id}</p>
+      <p>{displayName}</p>
       <button onClick={removeColumns}>Remove</button>
     </div>
   );
