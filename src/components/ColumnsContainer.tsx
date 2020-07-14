@@ -3,15 +3,16 @@ import Column from "./Column";
 
 interface IColumnsContainerProps {
   columns: string[];
+  removeColumns: (id: string) => void;
 }
 
 const ColumnsContainer = (props: IColumnsContainerProps) => {
-  const { columns } = props;
+  const { columns, removeColumns } = props;
 
   return (
     <>
-      {columns.map((column: string) => (
-        <Column key={column} id={column} />
+      {columns.map((id: string) => (
+        <Column key={id} id={id} removeColumns={() => removeColumns(id)} />
       ))}
     </>
   );

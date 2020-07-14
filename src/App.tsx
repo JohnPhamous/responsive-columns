@@ -11,10 +11,17 @@ const App = () => {
     setColumns(newColumns);
   };
 
+  const removeColumn = (id: string) => {
+    const newColumns = [...columns];
+    const index = newColumns.indexOf(id);
+    newColumns.splice(index, 1);
+    setColumns(newColumns);
+  };
+
   return (
     <main>
       <button onClick={addColumn}>Add Column</button>
-      <ColumnsContainer columns={columns} />
+      <ColumnsContainer columns={columns} removeColumns={removeColumn} />
     </main>
   );
 };

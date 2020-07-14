@@ -2,12 +2,18 @@ import React from "react";
 
 interface IColumnProps {
   id: string;
+  removeColumns: () => void;
 }
 
 const Column = (props: IColumnProps) => {
-  const { id } = props;
+  const { id, removeColumns } = props;
 
-  return <p>{id}</p>;
+  return (
+    <div>
+      <p>{id}</p>
+      <button onClick={removeColumns}>Remove</button>
+    </div>
+  );
 };
 
 export default Column;
