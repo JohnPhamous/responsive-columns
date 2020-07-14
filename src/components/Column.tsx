@@ -12,10 +12,9 @@ const Column = (props: IColumnProps) => {
   const { displayName } = column;
 
   return (
-    <ColumnContainer backgroundColor={column.color}>
+    <ColumnWrapper backgroundColor={column.color} onClick={removeColumns}>
       <p>{displayName}</p>
-      <button onClick={removeColumns}>Remove</button>
-    </ColumnContainer>
+    </ColumnWrapper>
   );
 };
 
@@ -25,6 +24,18 @@ interface ColumnContainerProps {
   readonly backgroundColor: string;
 }
 
-const ColumnContainer = styled.div<ColumnContainerProps>`
+const ColumnWrapper = styled.div<ColumnContainerProps>`
   background-color: ${(props) => props.backgroundColor};
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.15s;
+  transition-timing-function: ease-in;
+
+  :hover {
+    filter: brightness(1.25);
+  }
 `;
