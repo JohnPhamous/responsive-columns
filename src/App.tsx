@@ -19,7 +19,7 @@ const App = () => {
       color: `#${colors[colorIndex]}`,
     });
     setColumns(newColumns);
-    setColorIndex(colorIndex + 1);
+    setColorIndex((colorIndex + 1) % colors.length);
   };
 
   const removeColumn = (id: string) => {
