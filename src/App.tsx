@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import ColumnsContainer from "./components/ColumnsContainer";
 import { v4 as uuid } from "uuid";
 import { IColumnModel } from "./models/Column";
+import GetNextDisplayName from "./utils/GetNextDisplayName";
 
 const App = () => {
   const [columns, setColumns] = useState<IColumnModel[]>([]);
 
   const addColumn = () => {
     const newColumns = [...columns];
-    newColumns.push({ id: uuid(), displayName: "A", color: "red" });
+    newColumns.push({
+      id: uuid(),
+      displayName: GetNextDisplayName(newColumns),
+      color: "red",
+    });
     setColumns(newColumns);
   };
 
